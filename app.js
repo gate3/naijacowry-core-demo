@@ -6,11 +6,12 @@ const express = require('express');
 require('./src/helpers/db.helper');
 const cluster = require('cluster');
 const mws = require('./config/middlewares');
+const authRoutes = require('./src/routes/auth.route')
 
-if(cluster.isMaster){
-  const aw = require('./initAwilix')
-  aw.initialize()
-  const cont = aw.container;
+//if(cluster.isMaster){
+  //const aw = require('./initAwilix')
+  //aw.initialize()
+  //const cont = aw.container;
   //const redisHelper = cont.resolve('cacheHelper')
   //redisHelper.getValueFromSet(redisHelper.CONSTANTS.USERNAMES)
              //.then(console.log, console.error)
@@ -25,7 +26,7 @@ if(cluster.isMaster){
   /* cont.resolve('forgotPasswordCtrl')(
     {username:'doyinolarewaju'}
   ).then(console.log, console.error) */
-}
+//}
 
 /* const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users'); */
@@ -38,7 +39,7 @@ app.set('view engine', 'ejs'); */
 
 app.use(mws);
 
-
+app.use('/v1/auth/', authRoutes)
 //app.use(express.static(path.join(__dirname, 'public')));
 
 /* app.use('/', indexRouter);
