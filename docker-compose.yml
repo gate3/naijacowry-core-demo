@@ -1,0 +1,23 @@
+version: "3"
+services:
+  redis:
+    image: redis
+    container_name: redis
+  app:
+    build: ./
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - 3000:3000
+    command:
+      sh -c 'npm i && ./bin/www'
+    container_name: user-services-container
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - RABBITMQ_URL=amqp://localhost
+      - MONGO_URI=mongodb://cowryadmin:P5HtqrFdvV1TobbG6MSGM8acTaegthWaXBNw9jnF5HcHmY2t3yrg@ds149365.mlab.com:49365/naijacowry
+    depends_on:
+      - redis
+    links:
+      - redis
