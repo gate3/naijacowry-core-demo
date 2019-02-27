@@ -8,8 +8,11 @@ const cluster = require('cluster');
 const mws = require('./config/middlewares');
 const authRoutes = require('./src/routes/auth.route')
 
+const aw = require('./initAwilix')
+console.log(aw.container.registrations);
+
 //if(cluster.isMaster){
-  //const aw = require('./initAwilix')
+  //
   //aw.initialize()
   //const cont = aw.container;
   //const redisHelper = cont.resolve('cacheHelper')

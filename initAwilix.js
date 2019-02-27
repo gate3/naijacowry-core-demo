@@ -40,8 +40,9 @@ container.register({
     randomNumberGenerator: awilix.asValue(randomstring)
 });
 
+initialize()
+
 module.exports = {
     awilix,
-    container,
-    initialize
+    container
 };
